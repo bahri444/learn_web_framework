@@ -142,7 +142,8 @@
 <!-- end-modal edit data -->
 
 <!-- modal hapus data -->
-<div class="modal fade" id="modalHapus">
+@foreach($produk_join as $row)
+<div class="modal fade" id="modalHapus<?= $row->produk_id ?>">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
@@ -152,17 +153,19 @@
                 </button>
             </div>
             <div class="modal-body">
+                <input type="hidden" class="form-control" value="<?= $row->produk_id ?>" name="produk_id">
                 <p>Yakin ingin menghapus data ini...?</p>
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Tidak</button>
-                <button type="button" class="btn btn-warning">Hapus</button>
+                <a href="/produk/destroy/{{$row->produk_id}}" class="btn btn-warning">Hapus</a>
             </div>
         </div>
         <!-- /.modal-content -->
     </div>
     <!-- /.modal-dialog -->
 </div>
+@endforeach
 <!-- end-modal hapus data -->
 
 <div class="content-wrapper">

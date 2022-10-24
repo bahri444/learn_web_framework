@@ -18,6 +18,7 @@ class KategoriController extends Controller
      */
     public function index()
     {
+
         $kategori = DB::table('kategoris')->get();
         // dd($kategori);
         return view('toko.kategori', [
@@ -33,12 +34,18 @@ class KategoriController extends Controller
      */
     public function tambah(Request $request)
     {
-        DB::table('kategoris')->insert([
-            'kategori' => $request->kategori,
-            'keterangan' => $request->keterangan
+        $validasi = $request->validate([
+            'kategori' => 'required',
+            'keterangan' => 'required'
         ]);
+        if ($validasi == true) {
+            DB::table('kategoris')->insert([
+                'kategori' => $request->kategori,
+                'keterangan' => $request->keterangan
+            ]);
+            return redirect('kategori');
+        }
         // dd($data);
-        return redirect('kategori');
     }
 
     /**
@@ -100,8 +107,8 @@ class KategoriController extends Controller
      */
     public function destroy($id)
     {
-        $data = DB::table('kategoris')->whereIn('kategori_id', '=', $id)->delete();
-        dd($data);
+        DB::table('kategoris')->where('kategori_id', '=', $id)->delete();
+        // dd($data);
         return redirect('kategori');
     }
 }

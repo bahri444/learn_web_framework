@@ -90,8 +90,9 @@ Route::resource('to_do', To_doController::class);
 Route::get('/kategori', [KategoriController::class, 'index']);
 Route::post('/kategori/tambah', [KategoriController::class, 'tambah'])->name('kategori.tambah');
 Route::post('/kategori/update', [KategoriController::class, 'update'])->name('kategori.update');
-Route::delete('/kategori/destroy', [KategoriController::class, 'destroy'])->name('kategori.destroy');
+Route::get('/kategori/destroy/{id}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
 
 Route::get('/produk', [ProdukController::class, 'index']);
 Route::post('/produk/tambah', [ProdukController::class, 'tambah'])->name('produk.tambah');
 Route::post('/produk/update', [ProdukController::class, 'update'])->name('produk.update');
+Route::get('/produk/destroy/{id}', [ProdukController::class, 'destroy'])->name('produk.destroy');

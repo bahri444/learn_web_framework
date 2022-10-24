@@ -55,13 +55,13 @@
                 <div class="modal-body">
                     <div class="card-body">
                         <div class="form-group">
-                            <input type="text" name="kategori_id" value="<?= $val->kategori_id ?>" class="form-control" placeholder="nama kategori">
+                            <input type="hidden" name="kategori_id" value="<?= $val->kategori_id ?>" class="form-control" placeholder="nama kategori">
                             <label for="kategori">Kategori</label>
                             <input type="text" name="kategori" value="<?= $val->kategori ?>" class="form-control" placeholder="nama kategori">
                         </div>
                         <div class="form-group">
                             <label for="keterangan">Keterangan</label>
-                            <input type="text" name="keterangan" value="<?= $val->kategori ?>" class="form-control" placeholder="keterangan / deskripsi">
+                            <input type="text" name="keterangan" value="<?= $val->keterangan ?>" class="form-control" placeholder="keterangan / deskripsi">
                         </div>
                     </div>
                     <!-- /.card-body -->
@@ -90,22 +90,18 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="/kategori/destroy" method="POST">
-                <div class="modal-body">
-                    @csrf
-                    @method('DELETE')
-                    <input type="hidden" name="kategori_id" id="kategori_id" value="<?= $row->kategori_id ?>">
-                    <p>Yakin ingin menghapus data ini...?</p>
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Tidak</button>
-                    <button type="submit" class="btn btn-warning">Hapus</button>
-                </div>
-
-            </form>
+            <div class="modal-body">
+                <input type="hidden" name="kategori_id" id="kategori_id" value="<?= $row->kategori_id ?>">
+                <p>Yakin ingin menghapus data ini...?</p>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Tidak</button>
+                <a href="/kategori/destroy/{{$row->kategori_id}}" class="btn btn-warning">Hapus</a>
+            </div>
         </div>
         <!-- /.modal-content -->
     </div>
+
     <!-- /.modal-dialog -->
 </div>
 @endforeach

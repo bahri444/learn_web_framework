@@ -107,6 +107,7 @@ class ProdukController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('produks')->where('produk_id', '=', $id)->delete();
+        return redirect('produk');
     }
 }
