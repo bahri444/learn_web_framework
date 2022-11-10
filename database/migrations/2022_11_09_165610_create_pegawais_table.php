@@ -13,10 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('to_dos', function (Blueprint $table) {
-            $table->id();
-            $table->string('judul');
+        Schema::create('pegawais', function (Blueprint $table) {
+            $table->id('id_pegawai');
+            $table->foreignId('id_bagian');
+            $table->string('nama', 30);
+            $table->char('kontak_wa', 14);
             $table->timestamps();
+            $table->foreign('id_bagian')->references('id_bagian')->on('bagians')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -27,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('to_dos');
+        Schema::dropIfExists('pegawais');
     }
 };

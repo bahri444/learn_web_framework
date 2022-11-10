@@ -5,10 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class To_do extends Model
+class Bagian extends Model
 {
     use HasFactory;
-
-    public $fillable = ['judul'];
-    public $timestamps = true;
+    protected $fillable = ['bagian'];
+    protected $timestamps = true;
 }

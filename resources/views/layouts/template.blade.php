@@ -23,15 +23,6 @@
   <link rel="stylesheet" href="{{ asset('assets') }}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <!-- end-datatable -->
 </head>
-<!--
-`body` tag options:
-
-  Apply one or more of the following classes to to the body tag
-  to get the desired effect
-
-  * sidebar-collapse
-  * sidebar-mini
--->
 
 <body class="hold-transition sidebar-mini">
   <div class="wrapper">
@@ -95,7 +86,7 @@
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- <i class="nav-icon fas fa-tachometer-alt"></i> -->
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a href="{{('kategori')}}" class="nav-link">
                 <i class="nav-icon fas fa-boxes"></i>
                 <p>
@@ -108,6 +99,38 @@
                 <i class="nav-icon fas fa-shopping-cart"></i>
                 <p>
                   Produk
+                </p>
+              </a>
+            </li> -->
+            <li class="nav-item">
+              <a href="{{('bagian')}}" class="nav-link">
+                <i class="nav-icon fas fa-star"></i>
+                <p>
+                  Bagian
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{('pegawai')}}" class="nav-link">
+                <i class="nav-icon fas fa-user-md"></i>
+                <p>
+                  Pegawai
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{('kebutuhan')}}" class="nav-link">
+                <i class="nav-icon fas fa-briefcase-medical"></i>
+                <p>
+                  Kebutuhan
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{('administrasi')}}" class="nav-link">
+                <i class="nav-icon fas fa-notes-medical"></i>
+                <p>
+                  Administrasi
                 </p>
               </a>
             </li>

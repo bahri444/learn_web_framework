@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\To_do;
 use Illuminate\Support\Facades\DB;
 
-class To_doController extends Controller
+class BagianC extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,11 @@ class To_doController extends Controller
      */
     public function index()
     {
-        $to_do = DB::table('todo')->get();
-        return view('to_do.index', compact('to_do'));
+        $bagian = DB::table('bagians')->get();
+        return view('rsud.bagian', [
+            'jabatan' => $bagian,
+            'title' => 'jabatan'
+        ]);
     }
 
     /**
@@ -24,9 +26,17 @@ class To_doController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function tambah(Request $request)
     {
-        return view('to_do.create');
+        $validasi = $request->validate([
+            'bagian' => 'required'
+        ]);
+        if ($validasi == true) {
+            DB::table('bagians')->insert([
+                'bagian' => $request->bagian
+            ]);
+            return redirect('bagian');
+        }
     }
 
     /**
@@ -37,13 +47,7 @@ class To_doController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'judul' => 'required'
-        ]);
-        $to_do = new To_do();
-        $to_do->judul = $request->judul;
-        $to_do->save();
-        return redirect()->route('to_do.index')->with('success', 'Data berhasil di tambahkan');
+        //
     }
 
     /**
@@ -54,8 +58,7 @@ class To_doController extends Controller
      */
     public function show($id)
     {
-        $to_do = To_do::findOrFail($id);
-        return view('to_do.show', compact('to_do'));
+        //
     }
 
     /**
@@ -66,8 +69,7 @@ class To_doController extends Controller
      */
     public function edit($id)
     {
-        $to_do = To_do::findOrFail($id);
-        return view('to_do.update', compact('to_do'));
+        //
     }
 
     /**
@@ -77,16 +79,13 @@ class To_doController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
-        $validated = $request->validate([
-            'judul' => 'required'
-        ]);
-        $to_do = To_do::findOrFail($id);
-        $to_do->judul = $request->judul;
-        $to_do->save();
-        return redirect()->route('to_do.index')->with('succes', 'data berhasil di update');
+        $data = array(
+            'bagian' => $request->post('bagian')
+        );
+        DB::table('bagians')->where('id_bagian', '=', $request->post('id_bagian'))->update($data);
+        return redirect('bagian');
     }
 
     /**
@@ -97,9 +96,7 @@ class To_doController extends Controller
      */
     public function destroy($id)
     {
-        //
-        $to_do = To_do::findOrFail($id);
-        $to_do->delete();
-        return redirect()->route('to_do.index')->with('success', 'data berhasil di hapus');
+        DB::table('bagians')->where('id_bagian', '=', $id)->delete();
+        return redirect('bagian');
     }
 }
